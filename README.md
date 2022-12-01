@@ -1,9 +1,14 @@
-# Web_Application-SpringMVC
+<h1 align="center">
+  <p align="center">WEB APPLICATION - SPRING MVC</p>
+</h1>
+
+![mvc](https://user-images.githubusercontent.com/104053775/204969363-fd6d0a47-2a55-425f-9ea4-f21b55ae496b.jpg)
+
 
 # Sobre o projeto / Regras de negócio 
 ### Precisamos desenvolver uma aplicação Web tradicional (server-side) para realizar análise de milhares de transações financeiras e identificar possíveis transações suspeitas.
 
-### Para realizar essa análise, precisaremos desenvolver uma tela para upload de arquivos, que deve suportar diversos formatos distintos, bem como implementar algoritmos para extração, validação e persistência das informações. Boas práticas de orientação a objetos, design patterns e princípios SOLID serão essenciais. Também foi desenvolvido o mecanismo de autenticação de usuários.
+### Para realizar essa análise, precisaremos desenvolver uma tela para upload de arquivos, que deve suportar diversos formatos distintos, bem como implementar algoritmos para extração, validação e persistência das informações. Boas práticas de orientação a objetos, design patterns e princípios SOLID serão essenciais. Também será desenvolvido o mecanismo de autenticação de usuários.
 
 - **Importar transações** : Desenvolva uma tela contendo um formulário que será utilizado para importar as transações na aplicação. Esse formulário terá apenas um campo de upload de arquivo
 
@@ -50,3 +55,18 @@ Portanto, antes de salvar as transações no banco de dados devemos seguir as se
 ### Implemente o controle de acesso na aplicação, que deverá conter uma página de login. A aplicação também deve restringir o acesso à todas as páginas(exceto a página de login) para os usuários que não estejam previamente autenticados, bem como um botão para o usuário realizar o logout
 
 ### Para melhorar o controle das importações realizadas na aplicação, será necessário vincular o usuário que efetuou cada importação. Na funcionalidade de importar transações será necessário registrar o usuário que está realizando a importação, que no caso será o usuário logado disparando tal ação.
+<hr>
+<hr>
+
+## ✔️Tecnologias utilizadas neste Repositório
+
+- ``Java 17``
+- ``IntelliJ``
+- ``SPRING 2.7.5``
+- ``SPRING SECURITY 5.7``
+- ``Lombok``
+- ``SPRING DATA``
+- ``H2 DATABASE (in memory)``
+- ``BOOTSTRAP``
+- ``HTML5 / CSS3``
+
