@@ -69,4 +69,5 @@ Portanto, antes de salvar as transações no banco de dados devemos seguir as se
 - ``H2 DATABASE (in memory)``
 - ``BOOTSTRAP``
 - ``HTML5 / CSS3``
+- ``THYMELEAF``
 
