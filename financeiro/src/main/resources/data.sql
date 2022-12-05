@@ -1,0 +1,2 @@
+INSERT INTO usuarios (email, senha, nome) VALUES ('rafael@teste.com','$2a$10$V3k61WrxIHosGyc.xLgWSO3eKJZyv8hLFoatG6zSdFeqOrMX2pGMm', 'Rafael')
+INSERT INTO usuarios (email, senha, nome) VALUES ('bessa@email.com','$2a$10$V3k61WrxIHosGyc.xLgWSO3eKJZyv8hLFoatG6zSdFeqOrMX2pGMm', 'Bessa')

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tela Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        body h1{
+            text-align:center;
+        }
+
+        body h2{
+            text-align:center;
+        }
+
+        body {
+            position:relative;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-top: 10px;
+            background-color: #E6E6FA;
+
+        }
+
+        #botaosubmit {
+            margin-top: 7px;
+        }
+
+        hr{
+            display: block;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            margin-left: auto;
+            margin-right: auto;
+            border-width: 2px;
+            border-color: black;
+        }
+
+        #logout{
+            display: block;
+            text-align: right;
+            margin-bottom: 2em;
+            margin-right: 30px;
+            margin-left: 1275px;
+        }
+        #analise{
+            display: block;
+            text-align: right;
+            margin-bottom: 2em;
+            margin-right: 30px;
+            margin-left: 1235px;
+        }
+
+        #escopo{
+            margin-top: 30px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="escopo">
+        <p> Seja bem vindo <b th:text="${nomeLogado}"> USUARIO </b></p>
+        <div >
+            <h1> IMPORTAR TRANSAÇÕES </h1>
+            <a id="logout" href="/logout" class="btn btn-primary"> <b> Logout </b></a>
+            <a id="analise" href="/analise" class="btn btn-primary"><b>Fazer análise</b></a>
+        </div>
+        <form action="/formulario" method="post">
+            <div class="mb-3">
+                <input class="form-control" type="file" id="formFile" accept=".csv" name="arquivo">
+                <button id="botaosubmit" type="submit" class="btn btn-primary">Importar</button>
+            </div>
+        </form>
+    </div>
+<hr>
+<br>
+
+<h2> IMPORTAÇÕES REALIZADAS </h2>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">DATA TRANSAÇÕES</th>
+        <th scope="col">DATA IMPORTAÇÃO</th>
+        <th scope="col">QUEM FEZ A IMPORTAÇÃO</th>
+        <th scope="col">Visualização</th>
+    </tr>
+    </thead>
+    <tbody th:each="listaParaExibir : ${listaParaExibir}">
+    <tr>
+        <th th:text="${listaParaExibir.dataTransacao}"> 1 </th>
+        <th th:text="${listaParaExibir.dataAtual}"> 2 </th>
+        <th th:text="${listaParaExibir.nomeImportador}"> 3 </th>
+        <th> <a class="btn btn-danger" th:href="@{/detalhes/{id}(id=${listaParaExibir.id})}" th:text="${detalhe}"></a> </th>
+    </tr>
+    </tbody>
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

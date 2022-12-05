@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tela Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        body {
+            position:relative;
+            margin-left: 220px;
+            margin-right: 220px;
+            margin-top: 10px;
+            background-image: url(https://bgfons.com/uploads/paper/paper_texture3872.jpg);
+            background-color: #cccccc;
+        }
+        h1 {
+            margin-bottom: 25px;
+        }
+
+        #formPrincipal {
+            margin-top: 180px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+    <h1> Bem vindo ao Sistema - Desenvolvido por Rafael Bessa</h1>
+    <hr>
+
+    <form id="formPrincipal" method="post">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"> <b>Email</b> </label>
+            <input name="username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text"> <b> Nunca compartilhe seu email.</b> </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"> <b>Senha</b> </label>
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Entrar</button>
+        <a class="btn btn-primary" href="/cadastro">Se Cadastrar</a>
+
+    </form>
+
+</body>
+</html>
