@@ -113,13 +113,13 @@ Uma conta bancária deve ser considerada suspeita se o somatório de sua movimen
 
 - ``Fiz alguns testes de integração com o Selenium, somente testando o login de usuários``
 
-- ``Usei o Thymeleaf como engine nas páginas HTML, tudo que tiver com a tag th: vem do thymeleaf, não esqueça de ter a dependência adicionada no pom.xml``
+- ``Usei o Thymeleaf como engine nas páginas HTML, tudo que estiver com a tag th: vem do thymeleaf, não esqueça de ter a dependência adicionada no pom.xml``
 
 - ``Todas as exceptions possíveis de serem lançadas na aplicação atual, tem suas páginas html de tratamento``
 
-- ``Algumas classes vistas nas páginas html, são do Bootstrap, não esqueça de adicioná-los no título do arquivo para que tudo fique certo``
+- ``Algumas classes html vistas nas páginas de template, são do Bootstrap, não esqueça de adicioná-los no título do arquivo para que tudo fique certo``
 
-- ``A ideia do projeto é a fazer a funcionalidade em questão, as páginas eu criei possuem templates simples para o entendimento da aplicação``
+- ``A ideia do projeto é a fazer a funcionalidade em questão, as páginas que eu criei possuem designs simples para o entendimento da aplicação``
 
 - ``Enquanto o logout não for clicado (efetuado) o usuário continuará logado``
 
