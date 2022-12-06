@@ -91,4 +91,33 @@ Uma conta bancária deve ser considerada suspeita se o somatório de sua movimen
 
 <hr>
 <hr>
+
 # COMO EU FIZ O PROJETO 
+
+- ``Resolvi usar um ** Banco de dados em memória (H2) ** para uma melhor praticidade no uso da aplicação, juntamente com esse banco criei um arquivo data.sql, onde eu coloquei duas querys para inserir dois usuários previamente (Você encontra as configurações no arquivo application.properties)``
+
+- ``O endpoint para cadastrar usuários novos eu também criei, caso queria testar (localhost:8080/cadastro), segundo as regras de negócio, onde a PRIMARY KEY é o email. Não é possível usuários com o mesmo email cadastrado``
+
+- ``A aplicação está configurada com o SPRING SECURITY, você só consegue acessar sem autenticação os endpoints /login, /cadastro e /h2``
+
+- ``Para efetuar o login sem se cadastrar, use um dos usuários já cadastrados (email: rafael@teste.com senha: abc) ou (email: bessa@email.com senha: abc)``
+
+- ``Para importar algum arquivo, ele precisa estar no formato .CSV (VALOR SEPARADO POR VÍRGULA) e seguir as regras de negócio da aplicação, descritas acima no repositório``
+
+- ``Para que a importação funcione, os arquivos CSV devem estar na mesma pasta que o projeto, se não a aplicação não consegue encontrá-los facilmente``
+
+- ``As importações são colocadas em ordem decrescente de suas datas de transação, conforme regra de negócio``
+
+- ``Após fazer as importações, é possivel clicar em "Fazer Análise", selecione o mês e ano corretamente e se algo suspeito for encontrado ele aparecerá na tabela abaixo``
+
+- ``Fiz alguns testes de integração com o Selenium, somente testando o login de usuários``
+
+- ``Usei o Thymeleaf como engine nas páginas HTML, tudo que tiver com a tag th: vem do thymeleaf, não esqueça de ter a dependência adicionada no pom.xml``
+
+- ``Todas as exceptions possíveis de serem lançadas na aplicação atual, tem suas páginas html de tratamento``
+
+- ``Algumas classes vistas nas páginas html, são do Bootstrap, não esqueça de adicioná-los no título do arquivo para que tudo fique certo``
+
+- ``A ideia do projeto é a fazer a funcionalidade em questão, as páginas eu criei possuem templates simples para o entendimento do usuário``
+
+- ``Enquanto o logout não for clicado (efetuado) o usuário continuará logado``
