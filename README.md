@@ -73,6 +73,7 @@ Uma transação deve ser considerada suspeita se o seu valor for igual ou superi
 Uma conta bancária deve ser considerada suspeita se o somatório de sua movimentação no mês for superior a **R$1.000.000,00**, seja enviando ou recebendo tal quantia.
 
 <hr>
+<hr>
 
 ## ✔️Tecnologias utilizadas neste Repositório
 
@@ -92,7 +93,7 @@ Uma conta bancária deve ser considerada suspeita se o somatório de sua movimen
 <hr>
 <hr>
 
-# COMO EU FIZ O PROJETO 
+# COMO EU FIZ O PROJETO E COMO ELE FUNCIONA
 
 - ``Resolvi usar um ** Banco de dados em memória (H2) ** para uma melhor praticidade no uso da aplicação, juntamente com esse banco criei um arquivo data.sql, onde eu coloquei duas querys para inserir dois usuários previamente (Você encontra as configurações no arquivo application.properties)``
 
@@ -118,6 +119,8 @@ Uma conta bancária deve ser considerada suspeita se o somatório de sua movimen
 
 - ``Algumas classes vistas nas páginas html, são do Bootstrap, não esqueça de adicioná-los no título do arquivo para que tudo fique certo``
 
-- ``A ideia do projeto é a fazer a funcionalidade em questão, as páginas eu criei possuem templates simples para o entendimento do usuário``
+- ``A ideia do projeto é a fazer a funcionalidade em questão, as páginas eu criei possuem templates simples para o entendimento da aplicação``
 
 - ``Enquanto o logout não for clicado (efetuado) o usuário continuará logado``
+
+- ``TODAS as regras de negócio foram atendidas, para saber mais sobre elas, leia a primeira parte deste README``
