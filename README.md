@@ -5,7 +5,7 @@
 ![mvc](https://user-images.githubusercontent.com/104053775/204969363-fd6d0a47-2a55-425f-9ea4-f21b55ae496b.jpg)
 
 
-# SOBRE O PROJETO / REGRAS DE NEGÓCIO
+# SOBRE O PROJETO 💻 / REGRAS DE NEGÓCIO 👥
 ### Precisamos desenvolver uma aplicação Web tradicional (server-side) para realizar análise de milhares de transações financeiras e identificar possíveis transações suspeitas.
 
 ### Para realizar essa análise, precisaremos desenvolver uma tela para upload de arquivos, que deve suportar formatos CSV(Valores separados por vírgula), bem como implementar algoritmos para extração, validação e persistência das informações. Boas práticas de orientação a objetos, design patterns e princípios SOLID serão essenciais. Também será desenvolvido o mecanismo de autenticação de usuários.
@@ -93,9 +93,9 @@ Uma conta bancária deve ser considerada suspeita se o somatório de sua movimen
 <hr>
 <hr>
 
-# COMO EU FIZ O PROJETO E COMO ELE FUNCIONA
+# COMO EU FIZ O PROJETO E COMO ELE FUNCIONA 💻 🧠
 
-- ``Resolvi usar um ** Banco de dados em memória (H2) ** para uma melhor praticidade no uso da aplicação, juntamente com esse banco criei um arquivo data.sql, onde eu coloquei duas querys para inserir dois usuários previamente (Você encontra as configurações no arquivo application.properties)``
+- ``Resolvi usar um Banco de dados em memória (H2) para uma melhor praticidade no uso da aplicação, juntamente com esse banco criei um arquivo data.sql, onde eu coloquei duas querys para inserir dois usuários previamente (Você encontra as configurações no arquivo application.properties)``
 
 - ``O endpoint para cadastrar usuários novos eu também criei, caso queria testar (localhost:8080/cadastro), segundo as regras de negócio, onde a PRIMARY KEY é o email. Não é possível usuários com o mesmo email cadastrado``
 
