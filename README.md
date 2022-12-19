@@ -101,15 +101,25 @@ Uma conta bancária deve ser considerada suspeita se o somatório de sua movimen
 
 - ``A aplicação está configurada com o SPRING SECURITY, você só consegue acessar sem autenticação os endpoints /login, /cadastro e /h2``
 
+![1](https://user-images.githubusercontent.com/104053775/208328758-21f3e009-e689-49fc-bff5-b983979c09c2.png)
+
 - ``Para efetuar o login sem se cadastrar, use um dos usuários já cadastrados (email: rafael@teste.com senha: abc) ou (email: bessa@email.com senha: abc)``
+
+![2](https://user-images.githubusercontent.com/104053775/208328918-a3b55828-ca6f-4b92-b777-a872a89c93ba.png)
 
 - ``Para importar algum arquivo, ele precisa estar no formato .CSV (VALOR SEPARADO POR VÍRGULA) e seguir as regras de negócio da aplicação, descritas acima no repositório``
 
 - ``Para que a importação funcione, os arquivos CSV devem estar na mesma pasta que o projeto, se não a aplicação não consegue encontrá-los facilmente``
 
+![3](https://user-images.githubusercontent.com/104053775/208329079-39161306-5789-4854-961f-cfb13c0eb4b7.png)
+
 - ``As importações são colocadas em ordem decrescente de suas datas de transação, conforme regra de negócio``
 
 - ``Após fazer as importações, é possivel clicar em "Fazer Análise", selecione o mês e ano corretamente e se algo suspeito for encontrado ele aparecerá na tabela abaixo``
+
+![4](https://user-images.githubusercontent.com/104053775/208333032-7e96ab47-a15d-4783-9f87-317a1542cb4b.png)
+
+![5](https://user-images.githubusercontent.com/104053775/208333274-26b58ff6-06ca-4861-9d65-dfd7d4996425.png)
 
 - ``Fiz alguns testes de integração com o Selenium, somente testando o login de usuários``
 
