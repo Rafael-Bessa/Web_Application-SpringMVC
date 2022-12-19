@@ -97,7 +97,7 @@ Uma conta bancária deve ser considerada suspeita se o somatório de sua movimen
 
 - ``Resolvi usar um Banco de dados em memória (H2) para uma melhor praticidade no uso da aplicação, juntamente com esse banco criei um arquivo data.sql, onde eu coloquei duas querys para inserir dois usuários previamente (Você encontra as configurações no arquivo application.properties)``
 
-- ``O endpoint para cadastrar usuários novos eu também criei, caso queria testar (localhost:8080/cadastro), segundo as regras de negócio, onde a PRIMARY KEY é o email. Não é possível usuários com o mesmo email cadastrado``
+- ``O endpoint para cadastrar usuários novos eu também criei, caso queira testar (localhost:8080/cadastro), segundo as regras de negócio, onde a PRIMARY KEY é o email. Não é possível usuários com o mesmo email cadastrado``
 
 - ``A aplicação está configurada com o SPRING SECURITY, você só consegue acessar sem autenticação os endpoints /login, /cadastro e /h2``
 
