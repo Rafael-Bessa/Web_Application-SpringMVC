@@ -40,14 +40,11 @@
         }
 
         #logout{
-            display: block;
             text-align: right;
             margin-bottom: 2em;
-            margin-right: 30px;
-            margin-left: 1275px;
+            float: right;
         }
         #analise{
-            display: block;
             text-align: right;
             margin-bottom: 2em;
             margin-right: 30px;
@@ -65,8 +62,8 @@
 <body>
     <div id="escopo">
         <p> Seja bem vindo <b th:text="${nomeLogado}"> USUARIO </b></p>
-        <div >
-            <h1> IMPORTAR TRANSAÇÕES </h1>
+        <h1> IMPORTAR TRANSAÇÕES </h1>
+        <div style="display: inline-block;">
             <a id="logout" href="/logout" class="btn btn-primary"> <b> Logout </b></a>
             <a id="analise" href="/analise" class="btn btn-primary"><b>Fazer análise</b></a>
         </div>

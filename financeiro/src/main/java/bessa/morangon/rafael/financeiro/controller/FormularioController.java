@@ -33,7 +33,9 @@ public class FormularioController {
         for (Importacao i: importacoes) {
             listaParaExibir.add(new DatasDto(i));
         }
-        listaParaExibir.sort(Comparator.comparing(DatasDto::getDataTransacao).reversed());
+
+        listaParaExibir.sort(Comparator.comparing(DatasDto::getDataTransacaoParaFazerOrdenacaoDaLista).reversed());
+
         model.addAttribute("listaParaExibir", listaParaExibir);
         model.addAttribute("nomeLogado", principal.getName());
         model.addAttribute("detalhe", detalhe);
