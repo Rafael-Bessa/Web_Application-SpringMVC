@@ -115,7 +115,7 @@ Uma conta bancária deve ser considerada suspeita se o somatório de sua movimen
 
 - ``As importações são colocadas em ordem decrescente de suas datas de transação, conforme regra de negócio``
 
-- ``Após fazer as importações, é possivel clicar em "Fazer Análise", selecione o mês e ano corretamente e se algo suspeito for encontrado ele aparecerá na tabela abaixo``
+- ``Após fazer as importações, é possivel clicar em "Fazer Análise", selecione o mês e ano corretamente (canto superior esquerdo) e se algo suspeito for encontrado ele aparecerá na tabela abaixo``
 
 ![4](https://user-images.githubusercontent.com/104053775/208333032-7e96ab47-a15d-4783-9f87-317a1542cb4b.png)
 
