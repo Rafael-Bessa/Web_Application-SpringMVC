@@ -8,7 +8,7 @@
 # SOBRE O PROJETO 💻 / REGRAS DE NEGÓCIO 👥
 ### Precisamos desenvolver uma aplicação Web tradicional (server-side) para realizar análise de milhares de transações financeiras e identificar possíveis transações suspeitas.
 
-### Para realizar essa análise, precisaremos desenvolver uma tela para upload de arquivos, que deve suportar formatos CSV(Valores separados por vírgula), bem como implementar algoritmos para extração, validação e persistência das informações. Boas práticas de orientação a objetos, design patterns e princípios SOLID serão essenciais. Também será desenvolvido o mecanismo de autenticação de usuários.
+### Para realizar essa análise, precisaremos desenvolver uma tela para upload de arquivos, que deve suportar formatos CSV (Valores separados por vírgula), bem como implementar algoritmos para extração, validação e persistência das informações. Boas práticas de orientação a objetos, design patterns e princípios SOLID serão essenciais. Também será desenvolvido o mecanismo de autenticação de usuários.
 
 - **Importar transações** : Desenvolva uma tela contendo um formulário que será utilizado para importar as transações na aplicação. Esse formulário terá apenas um campo de upload de arquivo
 
@@ -36,7 +36,7 @@ Portanto, antes de salvar as transações no banco de dados devemos seguir as se
 
 - Se o arquivo que foi feito upload estiver vazio, uma mensagem de erro deve ser exibida para o usuário, indicando tal situação;
 
-- Ler a primeira transação(primeira linha do arquivo csv) para determinar qual a data das transações desse arquivo em específico;
+- Ler a primeira transação (primeira linha do arquivo csv) para determinar qual a data das transações desse arquivo em específico;
 
 - Se alguma transação posterior estiver com outra data diferente, ela deve ser ignorada e não ser salva no banco de dados;
 
