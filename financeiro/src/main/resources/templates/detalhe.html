@@ -1,128 +1,159 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tela Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Importação</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
-        body h1{
-            text-align:center;
-        }
-
-        body h2{
-            text-align:center;
-        }
-
         body {
-            position:relative;
-            margin-left: 20px;
-            margin-right: 20px;
-            margin-top: 10px;
-            background-color: #E6E6FA;
-
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        #botaosubmit {
-            margin-top: 7px;
+        .card-custom {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: white;
         }
-
-        hr{
-            display: block;
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-            margin-left: auto;
-            margin-right: auto;
-            border-width: 2px;
-            border-color: black;
+        .btn-custom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
         }
-
-        #voltar{
-            display: block;
-            text-align: right;
-            margin-bottom: 2em;
-            margin-right: 3em;
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            color: white;
         }
-
-        #escopo{
-            margin-top: 30px;
+        .table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
-
-        table{width:100% }
-			table, th, td{
-				border:1px solid;
-				border-collapse:collapse;padding:10px
-			}
-
-        thead {
-        text-align:center;
+        .table tbody tr:hover {
+            background-color: rgba(102, 126, 234, 0.1);
         }
-
-
+        .info-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
     </style>
-
 </head>
-
 <body>
+<div class="container">
+    <!-- Header -->
+    <div class="card-custom mb-4 p-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <h1 class="display-6 fw-bold mb-0">
+                <i class="bi bi-file-earmark-text-fill text-primary"></i>
+                Detalhes da Importação
+            </h1>
+            <a href="/formulario" class="btn btn-custom">
+                <i class="bi bi-arrow-left-circle"></i> Voltar
+            </a>
+        </div>
+    </div>
 
-    <div id="escopo">
-        <div >
-            <h1> DETALHES DA IMPORTAÇÃO </h1>
-            <a id="voltar" href="/formulario"> <b> Voltar </b></a>
+    <!-- Informações da Importação -->
+    <div class="card-custom mb-4 p-4" th:if="${importacao != null}">
+        <h5 class="fw-bold mb-4">
+            <i class="bi bi-info-circle-fill text-primary"></i> Informações da Importação
+        </h5>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="p-3 bg-light rounded">
+                    <div class="text-muted mb-2">
+                        <i class="bi bi-calendar-event"></i> Data das Transações
+                    </div>
+                    <div class="fs-5 fw-bold" th:text="${importacao.dataTransacao}"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 bg-light rounded">
+                    <div class="text-muted mb-2">
+                        <i class="bi bi-calendar-check"></i> Importado em
+                    </div>
+                    <div class="fs-6 fw-bold" th:text="${importacao.dataImportacao}"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 bg-light rounded">
+                    <div class="text-muted mb-2">
+                        <i class="bi bi-person-badge"></i> Importado por
+                    </div>
+                    <div class="fs-5 fw-bold" th:text="${importacao.nomeUsuario}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transações -->
+    <div class="card-custom p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="fw-bold mb-0">
+                <i class="bi bi-cash-stack text-success"></i> Transações Importadas
+            </h5>
+            <span class="info-badge" th:text="${totalTransacoes} + ' transação(ões)'"></span>
         </div>
 
-        <ul class="list-group">
-            <li class="list-group-item active" aria-current="true">Informações</li>
-            <li class="list-group-item" th:text="'IMPORTADO EM : ' + ${importacao.dataAtual}" >A second item</li>
-            <li class="list-group-item" th:text="'IMPORTADO POR : ' + ${importacao.nomeImportador}">A third item</li>
-            <li class="list-group-item" th:text="'DATA TRANSAÇÕES : ' + ${importacao.dataTransacao}">A fourth item</li>
-        </ul>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                <tr>
+                    <th colspan="3" class="text-center border-end border-white">
+                        <i class="bi bi-arrow-up-circle"></i> ORIGEM
+                    </th>
+                    <th colspan="3" class="text-center border-end border-white">
+                        <i class="bi bi-arrow-down-circle"></i> DESTINO
+                    </th>
+                    <th class="text-center">
+                        <i class="bi bi-currency-dollar"></i> VALOR
+                    </th>
+                </tr>
+                <tr>
+                    <th>Banco</th>
+                    <th>Agência</th>
+                    <th class="border-end">Conta</th>
+                    <th>Banco</th>
+                    <th>Agência</th>
+                    <th class="border-end">Conta</th>
+                    <th class="text-end">R$</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="transacao : ${lista}">
+                    <td th:text="${transacao.bancoOrigem}"></td>
+                    <td th:text="${transacao.agenciaOrigem}"></td>
+                    <td class="border-end" th:text="${transacao.contaOrigem}"></td>
+                    <td th:text="${transacao.bancoDestino}"></td>
+                    <td th:text="${transacao.agenciaDestino}"></td>
+                    <td class="border-end" th:text="${transacao.contaDestino}"></td>
+                    <td class="text-end fw-bold text-success"
+                        th:text="'R$ ' + ${#numbers.formatDecimal(transacao.valorTransacao, 1, 'POINT', 2, 'COMMA')}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Mensagem caso não haja transações -->
+        <div th:if="${lista == null || lista.isEmpty()}"
+             class="alert alert-warning text-center mt-3">
+            <i class="bi bi-exclamation-triangle"></i>
+            Nenhuma transação encontrada para esta importação.
+        </div>
     </div>
-<hr>
-<br>
+</div>
 
-<h2> TRANSAÇÕES IMPORTADAS </h2>
-<br>
-
-    <table>
-        <thead>
-        <tr>
-            <th COLSPAN="3">ORIGEM</th>
-            <th COLSPAN="3">DESTINO</th>
-            <th> VALOR </th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <td>BANCO</td>
-            <td>AGÊNCIA</td>
-            <td>CONTA</td>
-            <td>BANCO</td>
-            <td>AGÊNCIA</td>
-            <td>CONTA</td>
-        </tr>
-
-        <tr th:each="lista : ${lista}">
-            <td th:text="${lista.bancoOrigem}">1</td>
-            <td th:text="${lista.agenciaOrigem}">2</td>
-            <td th:text="${lista.contaOrigem}">3</td>
-            <td th:text="${lista.bancoDestino}">4</td>
-            <td th:text="${lista.agenciaDestino}">5</td>
-            <td th:text="${lista.contaDestino}">6</td>
-            <td th:text="'R$ ' + ${lista.valorTransacao}">7</td>
-        </tr>
-
-        </tbody>
-
-    </table>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

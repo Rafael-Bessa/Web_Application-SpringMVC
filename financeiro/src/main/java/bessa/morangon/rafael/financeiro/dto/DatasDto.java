@@ -4,7 +4,6 @@ import bessa.morangon.rafael.financeiro.model.Importacao;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,17 +13,20 @@ public class DatasDto {
 
     private Long id;
     private String dataTransacao;
-    private String dataAtual;
-    private String nomeImportador;
+    private String dataImportacao;
+    private String nomeUsuario;
+    private String dataTransacaoParaUrl;
     private LocalDateTime dataTransacaoParaFazerOrdenacaoDaLista;
 
     public DatasDto(Importacao i){
-        this.dataAtual = formataDataImportacao(i.getDataAgora());
+        this.id = i.getId();  // IMPORTANTE: ID para o link de detalhes
         this.dataTransacao = formataDataTransacao(i.getDataTransacao());
-        this.nomeImportador = i.getUsuario().getNome();
-        this.id = i.getId();
+        this.dataImportacao = formataDataImportacao(i.getDataAgora());
+        this.nomeUsuario = i.getUsuario().getNome();
+        this.dataTransacaoParaUrl = i.getDataTransacao().toString();
         this.dataTransacaoParaFazerOrdenacaoDaLista = i.getDataTransacao();
     }
+
     private String formataDataTransacao(LocalDateTime data){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return data.format(formatter);

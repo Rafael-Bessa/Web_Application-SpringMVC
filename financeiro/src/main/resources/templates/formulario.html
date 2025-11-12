@@ -1,105 +1,193 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tela Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Financeiro - Importação</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
     <style>
-        body h1{
-            text-align:center;
-        }
-
-        body h2{
-            text-align:center;
-        }
-
         body {
-            position:relative;
-            margin-left: 20px;
-            margin-right: 20px;
-            margin-top: 10px;
-            background-color: #E6E6FA;
-
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        #botaosubmit {
-            margin-top: 7px;
+        .card-custom {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: white;
         }
-
-        hr{
-            display: block;
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-            margin-left: auto;
-            margin-right: auto;
-            border-width: 2px;
-            border-color: black;
+        .btn-custom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
         }
-
-        #logout{
-            text-align: right;
-            margin-bottom: 2em;
-            float: right;
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            color: white;
         }
-        #analise{
-            text-align: right;
-            margin-bottom: 2em;
-            margin-right: 30px;
-            margin-left: 1235px;
+        .btn-warning-custom {
+            background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
+            color: white;
         }
-
-        #escopo{
-            margin-top: 30px;
+        .btn-warning-custom:hover {
+            background: linear-gradient(135deg, #e53e3e 0%, #b91c1c 100%);
+            color: white;
         }
-
+        .table-hover tbody tr:hover {
+            background-color: rgba(102, 126, 234, 0.1);
+        }
     </style>
-
 </head>
-
 <body>
-    <div id="escopo">
-        <p> Seja bem vindo <b th:text="${nomeLogado}"> USUARIO </b></p>
-        <h1> IMPORTAR TRANSAÇÕES </h1>
-        <div style="display: inline-block;">
-            <a id="logout" href="/logout" class="btn btn-primary"> <b> Logout </b></a>
-            <a id="analise" href="/analise" class="btn btn-primary"><b>Fazer análise</b></a>
+<div class="container">
+    <!-- Header -->
+    <div class="text-center text-white mb-4">
+        <h1 class="display-4 fw-bold">
+            <i class="bi bi-bank2"></i> Sistema Financeiro
+        </h1>
+        <p class="lead">Bem-vindo, <strong th:text="${nomeLogado}"></strong></p>
+        <div class="btn-group" role="group">
+            <a href="/analise" class="btn btn-warning-custom">
+                <i class="bi bi-shield-exclamation"></i> Análise de Suspeitas
+            </a>
+            <a href="/logout" class="btn btn-light">
+                <i class="bi bi-box-arrow-right"></i> Sair
+            </a>
         </div>
-        <form action="/formulario" method="post">
-            <div class="mb-3">
-                <input class="form-control" type="file" id="formFile" accept=".csv" name="arquivo">
-                <button id="botaosubmit" type="submit" class="btn btn-primary">Importar</button>
-            </div>
-        </form>
     </div>
-<hr>
-<br>
 
-<h2> IMPORTAÇÕES REALIZADAS </h2>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">DATA TRANSAÇÕES</th>
-        <th scope="col">DATA IMPORTAÇÃO</th>
-        <th scope="col">QUEM FEZ A IMPORTAÇÃO</th>
-        <th scope="col">Visualização</th>
-    </tr>
-    </thead>
-    <tbody th:each="listaParaExibir : ${listaParaExibir}">
-    <tr>
-        <th th:text="${listaParaExibir.dataTransacao}"> 1 </th>
-        <th th:text="${listaParaExibir.dataAtual}"> 2 </th>
-        <th th:text="${listaParaExibir.nomeImportador}"> 3 </th>
-        <th> <a class="btn btn-danger" th:href="@{/detalhes/{id}(id=${listaParaExibir.id})}" th:text="${detalhe}"></a> </th>
-    </tr>
-    </tbody>
-</table>
+    <!-- Upload Card -->
+    <div class="card card-custom mb-4">
+        <div class="card-body p-4">
+            <h3 class="mb-4">
+                <i class="bi bi-cloud-upload-fill"></i> Importar Transações CSV
+            </h3>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+            <form th:action="@{/formulario}" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="arquivo" class="form-label">Selecione o arquivo CSV:</label>
+                    <input type="file" name="arquivo" id="arquivo" accept=".csv"
+                           class="form-control form-control-lg" required>
+                </div>
+
+                <button type="submit" class="btn btn-custom btn-lg">
+                    <i class="bi bi-upload"></i> Importar Arquivo
+                </button>
+
+                <div class="alert alert-info mt-4 mb-0">
+                    <i class="bi bi-info-circle-fill"></i>
+                    <strong>Formato esperado do CSV:</strong><br>
+                    <code>BancoOrigem,Agencia,Conta,BancoDestino,Agencia,Conta,Valor,DataHora</code><br>
+                    <small>Exemplo: BANCO DO BRASIL,0001,00001-1,BANCO BRADESCO,0001,00001-1,8000.50,2022-01-01T07:30:00</small>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Histórico -->
+    <div class="card card-custom" th:if="${listaParaExibir != null && !listaParaExibir.isEmpty()}">
+        <div class="card-body p-4">
+            <h3 class="mb-4">
+                <i class="bi bi-clock-history"></i> Histórico de Importações
+            </h3>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                    <tr>
+                        <th><i class="bi bi-calendar-event"></i> Data da Transação</th>
+                        <th><i class="bi bi-calendar-check"></i> Data de Importação</th>
+                        <th><i class="bi bi-person-circle"></i> Usuário</th>
+                        <th class="text-center"><i class="bi bi-eye"></i> Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${listaParaExibir}">
+                        <td>
+                            <span class="badge bg-primary fs-6" th:text="${item.dataTransacao}"></span>
+                        </td>
+                        <td th:text="${item.dataImportacao}"></td>
+                        <td>
+                            <i class="bi bi-person-badge"></i>
+                            <span th:text="${item.nomeUsuario}"></span>
+                        </td>
+                        <td class="text-center">
+                            <!-- CORRIGIDO: Usa item.id ao invés de item.dataTransacaoParaUrl -->
+                            <a th:href="@{/detalhes/{id}(id=${item.id})}"
+                               class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-eye-fill"></i> Ver Detalhes
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header"
+                 th:classappend="${tipoAlerta == 'sucesso'} ? 'bg-success text-white' : 'bg-danger text-white'">
+                <h5 class="modal-title fw-bold">
+                    <i class="bi" th:classappend="${tipoAlerta == 'sucesso'} ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill'"></i>
+                    <span th:text="${tituloAlerta}">Título</span>
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <div class="alert mb-3"
+                     th:classappend="${tipoAlerta == 'sucesso'} ? 'alert-success' : 'alert-danger'">
+                    <p class="mb-0 fs-5" th:text="${mensagemAlerta}"></p>
+                </div>
+
+                <div th:if="${listaErros != null && !listaErros.isEmpty()}">
+                    <h6 class="text-danger fw-bold mb-3">
+                        <i class="bi bi-bug-fill"></i> Detalhes dos Erros:
+                    </h6>
+                    <div style="max-height: 350px; overflow-y: auto;" class="border rounded p-3 bg-light">
+                        <ul class="list-unstyled mb-0">
+                            <li th:each="erro, iterStat : ${listaErros}"
+                                class="mb-2 p-2 bg-white rounded border-start border-danger border-4">
+                                <strong class="text-danger" th:text="'#' + ${iterStat.count}"></strong>
+                                <span th:text="${erro}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" th:if="${listaErros != null}"
+                        data-bs-dismiss="modal"
+                        onclick="document.getElementById('arquivo').value=''; document.getElementById('arquivo').click();">
+                    <i class="bi bi-arrow-repeat"></i> Selecionar Outro Arquivo
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:if="${mensagemAlerta != null}">
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = new bootstrap.Modal(document.getElementById('alertModal'));
+            modal.show();
+        });
+    </script>
 </body>
 </html>

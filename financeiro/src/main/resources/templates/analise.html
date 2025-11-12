@@ -1,156 +1,229 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tela Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Transações Suspeitas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
-        body h1{
-            text-align:center;
-        }
-
-        body h2{
-            text-align:center;
-        }
-
         body {
-            position:relative;
-            margin-left: 20px;
-            margin-right: 20px;
-            margin-top: 10px;
-            background-color: #E6E6FA;
-
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        #botaosubmit {
-            margin-top: 7px;
+        .card-custom {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: white;
         }
-
-        hr{
-            display: block;
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-            margin-left: auto;
-            margin-right: auto;
-            border-width: 2px;
-            border-color: black;
+        .btn-custom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
         }
-
-        #voltar{
-            display: block;
-            text-align: right;
-            margin-bottom: 2em;
-            margin-right: 3em;
+        .btn-danger-custom {
+            background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            border: none;
         }
-
-        #escopo{
-            margin-top: 30px;
+        .btn-danger-custom:hover {
+            background: linear-gradient(135deg, #e53e3e 0%, #b91c1c 100%);
+            color: white;
         }
-
-        table{width:100% }
-			table, th, td{
-				border:1px solid;
-				border-collapse:collapse;padding:10px
-			}
-
-        thead {
-        text-align:center;
+        .table-danger-header {
+            background: linear-gradient(135deg, #f56565 0%, #c53030 100%) !important;
+            color: white !important;
         }
-
-
+        .table tbody tr:hover {
+            background-color: rgba(245, 101, 101, 0.08);
+        }
     </style>
-
 </head>
-
 <body>
-        <div >
-            <h1> ANÁLISE DE TRANSAÇÕES SUSPEITAS </h1>
-            <a id="voltar" href="/formulario"> <b> Voltar </b></a>
+<div class="container">
+    <!-- Header -->
+    <div class="card-custom mb-4 p-4">
+        <h1 class="display-6 fw-bold text-center mb-4">
+            <i class="bi bi-shield-exclamation text-danger"></i>
+            Análise de Transações Suspeitas
+        </h1>
+
+        <div class="row align-items-end g-3">
+            <div class="col-md-9">
+                <form action="/analise" method="post" class="row g-3 align-items-end">
+                    <div class="col-md-8">
+                        <label for="data" class="form-label fw-bold">
+                            <i class="bi bi-calendar-range"></i> Selecione o Período:
+                        </label>
+                        <input type="month" name="data" id="data"
+                               class="form-control form-control-lg" required>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-danger-custom btn-lg w-100">
+                            <i class="bi bi-search"></i> Analisar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3 text-end">
+                <a href="/formulario" class="btn btn-custom btn-lg w-100">
+                    <i class="bi bi-arrow-left-circle"></i> Voltar
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Período Analisado -->
+    <div th:if="${periodoAnalisado != null}" class="alert alert-info mb-4">
+        <i class="bi bi-calendar-check-fill"></i>
+        <strong>Período Analisado:</strong>
+        <span class="badge bg-primary ms-2" th:text="${periodoAnalisado}"></span>
+    </div>
+
+    <!-- Transações Suspeitas -->
+    <div class="card-custom mb-4 p-4"
+         th:if="${transacoesSuspeitas != null && !transacoesSuspeitas.isEmpty()}">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="fw-bold mb-0">
+                <i class="bi bi-exclamation-triangle-fill text-danger"></i>
+                Transações Suspeitas
+            </h5>
+            <span class="badge bg-danger fs-6"
+                  th:text="${totalTransacoesSuspeitas} + ' encontrada(s)'"></span>
         </div>
 
-        <form action="/analise" method="post">
-            <input type="month" name="data">
-            <button type="submit" class="btn btn-primary">Analisar</button>
-        </form>
-<hr>
-<br>
+        <div class="alert alert-danger">
+            <i class="bi bi-info-circle-fill"></i>
+            <strong>Critério:</strong> Transações com valor superior a R$ 100.000,00
+        </div>
 
-<h2> TRANSAÇÕES SUSPEITAS </h2>
-<br>
-<p></p>
-        <table>
-            <thead>
-            <tr>
-                <th COLSPAN="3">ORIGEM</th>
-                <th COLSPAN="3">DESTINO</th>
-                <th> VALOR </th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr>
-                <td>BANCO</td>
-                <td>AGÊNCIA</td>
-                <td>CONTA</td>
-                <td>BANCO</td>
-                <td>AGÊNCIA</td>
-                <td>CONTA</td>
-            </tr>
-
-            <tr th:each="lista : ${transacoesSuspeitas}">
-                <td th:text="${lista.bancoOrigem}">1</td>
-                <td th:text="${lista.agenciaOrigem}">2</td>
-                <td th:text="${lista.contaOrigem}">3</td>
-                <td th:text="${lista.bancoDestino}">4</td>
-                <td th:text="${lista.agenciaDestino}">5</td>
-                <td th:text="${lista.contaDestino}">6</td>
-                <td th:text="'R$ ' + ${lista.valorTransacao}">7</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <br>
-        <h2> CONTAS SUSPEITAS </h2>
-        <br>
-
-        <table>
-            <thead>
-            <tr>
-                <th>BANCO</th>
-                <th>AGÊNCIA</th>
-                <th> CONTA </th>
-                <th> VALOR MOVIMENTADO </th>
-                <th> TIPO MOVIMENTAÇÃO  </th>
-            </tr>
-            </thead>
-
-            <tbody>
-                <tr th:each="lista : ${contasSuspeitasOrigem}">
-                    <td th:text="${lista.banco}">BANCO</td>
-                    <td th:text="${lista.agencia}">AGÊNCIA</td>
-                    <td th:text="${lista.conta}">CONTA</td>
-                    <td th:text="${lista.valorTransferido}">VALOR MOVIMENTADO</td>
-                    <td th:text="${lista.movimentacao}">TIPO MOVIMENTACAO</td>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-danger-header">
+                <tr>
+                    <th colspan="3" class="text-center border-end border-white">
+                        <i class="bi bi-arrow-up"></i> ORIGEM
+                    </th>
+                    <th colspan="3" class="text-center border-end border-white">
+                        <i class="bi bi-arrow-down"></i> DESTINO
+                    </th>
+                    <th class="text-center">
+                        <i class="bi bi-currency-dollar"></i> VALOR
+                    </th>
                 </tr>
-
-                <tr th:each="lista : ${contasSuspeitasDestino}">
-                    <td th:text="${lista.banco}">BANCO</td>
-                    <td th:text="${lista.agencia}">AGÊNCIA</td>
-                    <td th:text="${lista.conta}">CONTA</td>
-                    <td th:text="${lista.valorTransferido}">VALOR MOVIMENTADO</td>
-                    <td th:text="${lista.movimentacao}">TIPO MOVIMENTACAO</td>
+                <tr>
+                    <th>Banco</th>
+                    <th>Agência</th>
+                    <th class="border-end">Conta</th>
+                    <th>Banco</th>
+                    <th>Agência</th>
+                    <th class="border-end">Conta</th>
+                    <th class="text-end">R$</th>
                 </tr>
+                </thead>
+                <tbody>
+                <tr th:each="t : ${transacoesSuspeitas}">
+                    <td th:text="${t.bancoOrigem}"></td>
+                    <td th:text="${t.agenciaOrigem}"></td>
+                    <td class="border-end" th:text="${t.contaOrigem}"></td>
+                    <td th:text="${t.bancoDestino}"></td>
+                    <td th:text="${t.agenciaDestino}"></td>
+                    <td class="border-end" th:text="${t.contaDestino}"></td>
+                    <td class="text-end fw-bold text-danger"
+                        th:text="'R$ ' + ${#numbers.formatDecimal(t.valorTransacao, 1, 'POINT', 2, 'COMMA')}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-            </tbody>
-        </table>
+    <!-- Contas Suspeitas -->
+    <div class="card-custom p-4"
+         th:if="${(contasSuspeitasOrigem != null && !contasSuspeitasOrigem.isEmpty()) ||
+                     (contasSuspeitasDestino != null && !contasSuspeitasDestino.isEmpty())}">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="fw-bold mb-0">
+                <i class="bi bi-bank text-danger"></i>
+                Contas Suspeitas
+            </h5>
+            <span class="badge bg-danger fs-6"
+                  th:text="${totalContasSuspeitas} + ' encontrada(s)'"></span>
+        </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <div class="alert alert-warning">
+            <i class="bi bi-info-circle-fill"></i>
+            <strong>Critério:</strong> Contas com movimentação total superior a R$ 1.000.000,00
+        </div>
 
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-danger-header">
+                <tr>
+                    <th>Banco</th>
+                    <th>Agência</th>
+                    <th>Conta</th>
+                    <th class="text-end">Valor Movimentado</th>
+                    <th class="text-center">Tipo de Movimentação</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c : ${contasSuspeitasOrigem}">
+                    <td th:text="${c.banco}"></td>
+                    <td th:text="${c.agencia}"></td>
+                    <td th:text="${c.conta}"></td>
+                    <td class="text-end fw-bold text-danger"
+                        th:text="'R$ ' + ${#numbers.formatDecimal(c.valorTransferido, 1, 'POINT', 2, 'COMMA')}">
+                    </td>
+                    <td class="text-center">
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-arrow-up-circle"></i> SAÍDA
+                                </span>
+                    </td>
+                </tr>
+                <tr th:each="c : ${contasSuspeitasDestino}">
+                    <td th:text="${c.banco}"></td>
+                    <td th:text="${c.agencia}"></td>
+                    <td th:text="${c.conta}"></td>
+                    <td class="text-end fw-bold text-danger"
+                        th:text="'R$ ' + ${#numbers.formatDecimal(c.valorTransferido, 1, 'POINT', 2, 'COMMA')}">
+                    </td>
+                    <td class="text-center">
+                                <span class="badge bg-success">
+                                    <i class="bi bi-arrow-down-circle"></i> ENTRADA
+                                </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Mensagem quando não há dados -->
+    <div th:if="${periodoAnalisado == null}" class="alert alert-info text-center">
+        <i class="bi bi-info-circle-fill fs-1 d-block mb-3"></i>
+        <h5 class="fw-bold">Nenhum período selecionado</h5>
+        <p>Selecione um mês/ano acima para iniciar a análise de transações suspeitas.</p>
+    </div>
+
+    <div th:if="${periodoAnalisado != null &&
+                     (transacoesSuspeitas == null || transacoesSuspeitas.isEmpty()) &&
+                     (contasSuspeitasOrigem == null || contasSuspeitasOrigem.isEmpty()) &&
+                     (contasSuspeitasDestino == null || contasSuspeitasDestino.isEmpty())}"
+         class="alert alert-success text-center">
+        <i class="bi bi-check-circle-fill fs-1 text-success d-block mb-3"></i>
+        <h5 class="fw-bold">Nenhuma atividade suspeita detectada!</h5>
+        <p>Não foram encontradas transações ou contas suspeitas no período analisado.</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
